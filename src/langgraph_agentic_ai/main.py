@@ -13,7 +13,10 @@ def load_app_ui():
         st.error("Failed to load UI components.")
         return None
     
-    user_message=st.chat_input("Enter your message here...")
+    if st.session_state.IsFetchButtonClicked:
+        user_message=st.session_state.time_frame
+    else:
+        user_message=st.chat_input("Enter your message here...")
 
     if user_message:
         try:
