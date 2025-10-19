@@ -15,6 +15,8 @@ class LoadStreamlitUI:
             layout="wide"
         )
 
+        st.header(self.config.get_page_header())
+
         with st.sidebar:
             st.title("Configuration Panel")
 
@@ -27,9 +29,12 @@ class LoadStreamlitUI:
             if self.user_controls['selelcted_llm']=="OpenAI":
                 openai_models=self.config.get_openai_models()
                 self.user_controls['selected_openai_model']=st.selectbox("Select OpenAI Model",openai_models)
-                self.user_controls['openai_api_key']=st.text_input("Enter OpenAI API Key",type="password")
+                self.user_controls['openai_api_key']=st.session_state['openai_api_key']=st.text_input("Enter OpenAI API Key",type="password")
 
             self.user_controls['selected_use_case']=st.selectbox("Select Use Case",use_case_options)
+
+            if self.user_controls['selected_use_case']=="Chatbot with Tools":
+                os.environ["TAVILY_API_KEY"]=self.user_controls['tavily_api_key']=st.session_state['tavily_api_key']=st.text_input("Enter Tavily API Key",type="password")
 
         return self.user_controls
 

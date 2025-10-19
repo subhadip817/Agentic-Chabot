@@ -10,10 +10,13 @@ class Config:
         return self.config["DEFAULT"].get("LLM_OPTIONS").split(", ")
     
     def get_use_cases(self):
-        return self.config["DEFAULT"].get("USE_CASE").split(", ")
+        return self.config["DEFAULT"].get("USE_CASE").split(",")
     
     def get_page_title(self):
         return self.config["DEFAULT"].get("PAGE_TITLE")
+    
+    def get_page_header(self):
+        return self.config["DEFAULT"].get("PAGE_HEADER")
     
     def get_page_icon(self):
         return self.config["DEFAULT"].get("PAGE_ICON")
